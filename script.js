@@ -4,73 +4,7 @@ const body = document.querySelector("body");
 const mostFrequentSearch = document.querySelector('.mostFrequent')
 const productAvilable = document.getElementById("productAvilable");
 const shopingBag = document.getElementById('shopingCart')
-const addOption = document.getElementById('addOption')
-
-document.addEventListener("DOMContentLoaded", function () {
-  /** profile DaganDrop  start */
-
-  const profileBtn = document.getElementById("profile-btn");
-  const profileDropdown = document.getElementById("profile-dropdown");
-
-  profileBtn.addEventListener("click", function () {
-    profileDropdown.classList.toggle("hidden");
-  });
-
-  const logoutBtn = document.getElementById("logout-btn");
-  logoutBtn.addEventListener("click", function () {
-    console.log("Logged out");
-  });
-
-  const addProductToCart = document.querySelectorAll(".addBtn");
-  addProductToCart.forEach((button) => {
-    button.addEventListener("click", handlingAddToCartBtn);
-  });
-
-  let productAdded = [];
-
-  function handlingAddToCartBtn(event) {
-    const product = event.target.closest('.cartFrame')
-    const item = {
-      productName: product.querySelector('.contsPname').textContent,
-      price: parseInt(product.querySelector('.price').textContent.slice(1).trim()),
-      productImg: product.querySelector('img').src
-    }
-    productAdded.push(item)
-    productAvilable.innerHTML = parseInt(productAvilable.textContent) + 1
-    console.log(productAdded);
-  }
-
-  productAdded.forEach((product) => {
-    showingAllSelectedProduct(product.productImg, product.price, product.productName, 1)
-  });
-
-  /*** Showing all production which is avilable in cart */
-  const showAllProductOfAddToCart = document.getElementById(
-    "showAllProductOfAddToCart"
-  );
-
-  showAllProductOfAddToCart.addEventListener("click", () => {
-    productAvilable.style.display = "block";
-  });
-
-
-  let isAvilableProductRaperVisible = false;
-
-  shopingBag.addEventListener('click', (e) => {
-    const avilableProductRaper = document.querySelector('.avilableProductRaper');
-
-    if (!isAvilableProductRaperVisible) {
-      avilableProductRaper.style.left = "0%";
-      isAvilableProductRaperVisible = true;
-    } else {
-      avilableProductRaper.style.left = "-100%";
-      isAvilableProductRaperVisible = false;
-    }
-  });
-
-
-});
-
+const addOption = document.getElementById('addOption option')
 
 let products = [
   {
@@ -155,108 +89,213 @@ let products = [
   },
 ];
 
-function designeCart(url, price1, purchesCount, isAvilabel, pName) {
-  const cartFrame = document.createElement("div");
-  cartFrame.className = "cartFrame";
+let isProfileVisible = false
+const profileBtn = document.getElementById("profile-btn");
+const profileDropdown = document.getElementById("profile-dropdown");
+const menuIcon = document.getElementById("menue");
 
-  const img = document.createElement("img");
-  img.src = url;
-  img.className = "img";
+profileBtn.addEventListener('click', () => {
+  if (!isProfileVisible) {
+    profileDropdown.style.display = 'block';
+    isProfileVisible = true;
+  } else {
+    profileDropdown.style.display = 'none';
+    isProfileVisible = false;
+  }
+});
 
-  const priceAndAddToCartRapped = document.createElement("div");
-  priceAndAddToCartRapped.className = "container1";
+menuIcon.addEventListener('click', () => {
+  if (!isProfileVisible) {
+    profileDropdown.style.display = 'block';
+    isProfileVisible = true;
+  } else {
+    profileDropdown.style.display = 'none';
+    isProfileVisible = false;
+  }
+});
 
-  const price = document.createElement("p");
-  price.className = "price";
-  price.innerHTML = `₹ ${price1}`;
+document.addEventListener("DOMContentLoaded", function () {
 
-  const addToCartBtn = document.createElement("button");
-  addToCartBtn.className = "addBtn";
-  addToCartBtn.innerHTML = "Add To Cart";
+  const logoutBtn = document.getElementById("logout-btn");
+  logoutBtn.addEventListener("click", function () {
+    console.log("Logged out");
+  });
 
-  const soldItemAndReadyToDelieverRapped = document.createElement("div");
-  soldItemAndReadyToDelieverRapped.className = "container2";
 
-  const soldItemTillNow = document.createElement("p");
-  soldItemTillNow.className = "soldItem";
-  soldItemTillNow.innerHTML = `<i class="ri-eye-fill"></i> ${purchesCount}`;
+  const addProductToCart = document.querySelectorAll(".addBtn");
+  addProductToCart.forEach((button) => {
+    button.addEventListener("click", handlingAddToCartBtn);
+  });
 
-  const readyForDelieveryToday = document.createElement("p");
-  readyForDelieveryToday.className = "delieveringToday";
-  readyForDelieveryToday.innerHTML = `Avilable : ${isAvilabel === true ? 'Yes' : 'No'}`;
+  let productAdded = [];
 
-  const productName = document.createElement('p')
-  productName.className = 'container2, contsPname'
-  productName.innerHTML = `${pName}`
+  /** Product append to shoping cart */
+  function handlingAddToCartBtn(event) {
+    const product = event.target.closest('.cartFrame')
+    const item = {
+      productName: product.querySelector('.contsPname').textContent,
+      price: parseInt(product.querySelector('.price').textContent.slice(1).trim()),
+      productImg: product.querySelector('img').src
+    }
+    productAdded.push(item)
+    productAvilable.innerHTML = parseInt(productAvilable.textContent) + 1
+    console.log(productAdded);
+  }
 
-  cartFrame.appendChild(img);
-  cartFrame.appendChild(productName)
+  productAdded.forEach((product) => {
+    showingAllSelectedProduct(product.productImg, product.price, product.productName, 1)
+  });
 
-  priceAndAddToCartRapped.appendChild(price);
-  priceAndAddToCartRapped.appendChild(addToCartBtn);
+  /** showing all shoping cart product here on click here **/
+  let isAvilableProductRaperVisible = false;
+  shopingBag.addEventListener('click', (e) => {
+    const avilableProductRaper = document.querySelector('.avilableProductRaper');
 
-  soldItemAndReadyToDelieverRapped.appendChild(soldItemTillNow);
-  soldItemAndReadyToDelieverRapped.appendChild(readyForDelieveryToday);
+    if (!isAvilableProductRaperVisible) {
+      if (window.innerWidth <= 640) {
+        avilableProductRaper.style.left = "0%";
+        avilableProductRaper.style.width = '100%';
+      } else {
+        avilableProductRaper.style.left = "0%";
+        avilableProductRaper.style.width = '40%';
+      }
+      isAvilableProductRaperVisible = true;
+    } else {
+      avilableProductRaper.style.left = "-100%";
+      isAvilableProductRaperVisible = false;
+    }
 
-  cartFrame.appendChild(priceAndAddToCartRapped);
+  });
 
-  cartFrame.appendChild(soldItemAndReadyToDelieverRapped);
+  /** payment btn Here **/
+  const paymentBtn = document.querySelector('.payNow')
+  paymentBtn.addEventListener('click', () => {
+    const totalAmountToPay = document.querySelector('.totalAmount')
+    let amount = totalAmountToPay.textContent.slice(1).trim();
+    console.log(amount);
+    alert(`payment sucessfull. Totla amount is ${totalAmountToPay.textContent}`)
+  })
 
-  main.appendChild(cartFrame);
-}
+  /** Cart Desgned and showing and option of Input here **/
+  function designeCart(url, price1, purchesCount, isAvilabel, pName) {
+    const cartFrame = document.createElement("div");
+    cartFrame.className = "cartFrame";
 
+    const img = document.createElement("img");
+    img.src = url;
+    img.className = "img";
+
+    const priceAndAddToCartRapped = document.createElement("div");
+    priceAndAddToCartRapped.className = "container1";
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.innerHTML = `₹ ${price1}`;
+
+    const addToCartBtn = document.createElement("button");
+    addToCartBtn.className = "addBtn";
+    addToCartBtn.innerHTML = "Add To Cart";
+
+    const soldItemAndReadyToDelieverRapped = document.createElement("div");
+    soldItemAndReadyToDelieverRapped.className = "container2";
+
+    const soldItemTillNow = document.createElement("p");
+    soldItemTillNow.className = "soldItem";
+    soldItemTillNow.innerHTML = `<i class="ri-eye-fill"></i> ${purchesCount}`;
+
+    const readyForDelieveryToday = document.createElement("p");
+    readyForDelieveryToday.className = "delieveringToday";
+    readyForDelieveryToday.innerHTML = `Avilable : ${isAvilabel === true ? 'Yes' : 'No'}`;
+
+    const productName = document.createElement('p')
+    productName.className = 'container2, contsPname'
+    productName.innerHTML = `${pName}`
+
+    cartFrame.appendChild(img);
+    cartFrame.appendChild(productName)
+
+    priceAndAddToCartRapped.appendChild(price);
+    priceAndAddToCartRapped.appendChild(addToCartBtn);
+
+    soldItemAndReadyToDelieverRapped.appendChild(soldItemTillNow);
+    soldItemAndReadyToDelieverRapped.appendChild(readyForDelieveryToday);
+
+    cartFrame.appendChild(priceAndAddToCartRapped);
+
+    cartFrame.appendChild(soldItemAndReadyToDelieverRapped);
+
+    main.appendChild(cartFrame);
+  }
+
+  function allInputOptions(optionValue) {
+    const section1 = `<option value="${optionValue === undefined ? '' : optionValue.trim()}" class="text-white">${optionValue === undefined ? '' : optionValue.trim()}</option>`;
+    addOption.innerHTML += section1;
+  }
+
+  for (let i = 0; i < products.length; i++) {
+    let product = products[i];
+    designeCart(product.url, product.mrp, product.purchaseCount, product.isAvailable, product.productName)
+  }
+
+  /** heder Tag Here **/
+  function mostFrequentSearchByUser(url, tagName) {
+    const elm = `<a href="#" class="optionTag decoration-0 bg-gray-700 px-2 py-1 rounded" id="Option"><p class="text-white font-awesome text-xs font-semibold">${tagName}</p></a>`
+    mostFrequentSearch.innerHTML += elm
+
+  }
+
+  products.forEach(product => {
+    mostFrequentSearchByUser('', product.productName.toUpperCase().trim())
+  });
+
+});
+
+/** Appnded Slected Product for Payment **/
 function showingAllSelectedProduct(url, price, productName, quantity) {
   const product = `
-    <div class="relative">
-      <div class="w-full bg-slate-700 p-4 rounded-md flex flex-wrap justify-between items-center gap-10 top-2 md:mt-3">
-        <div class="productInfo flex-grow">
-          <h3 class="text-white font-semibold">Product Name: ${productName}</h3>
-
-          <div class="flex items-center gap-3 mt-2">
-            <button class="ri-add-line text-white border border-green-400 px-4 py-2 rounded-full cursor-pointer"></button>
-            <p class="w-16 bg-slate-800 rounded text-white text-center">${quantity}</p>
-            <button class="ri-subtract-line text-white border border-red-400 px-4 py-2 rounded-full cursor-pointer"></button>
+      <div class="relative ">
+        <div class="w-full bg-slate-700 p-4 rounded-md flex flex-wrap justify-between items-center gap-10 top-2 md:mt-3">
+          <div class="productInfo flex-grow">
+            <h3 class="text-white font-semibold">Product Name: ${productName}</h3>
+  
+            <div class="flex items-center gap-3 mt-2">
+              <button class="ri-add-line text-white border border-green-400 px-4 py-2 rounded-full cursor-pointer"></button>
+              <p class="w-16 bg-slate-800 rounded text-white text-center">${quantity}</p>
+              <button class="ri-subtract-line text-white border border-red-400 px-4 py-2 rounded-full cursor-pointer"></button>
+            </div>
+            <p class="text-green-400 mt-2"><span class="text-white">MRP of One Piece:</span> ₹ ${price}</p>
           </div>
-          <p class="text-green-400 mt-2"><span class="text-white">MRP of One Piece:</span> ₹ ${price}</p>
-        </div>
-        <div class="img-container">
-          <img src="${url}" alt="" class="w-48 h-24 rounded">
+          <div class="img-container">
+            <img src="${url}" alt="" class="w-48 h-24 rounded">
+          </div>
         </div>
       </div>
-    </div>
-  `;
+    `;
 
   document.querySelector('.avilableProductRaper').innerHTML += product
 
 }
-
+for (let i = 0; i < products.length / 2 - 1; i++) {
+  let product = products[i];
+  showingAllSelectedProduct(product.url, product.mrp, product.productName, product.quantity)
+}
+/** Total Amount Calculator **/
 function appendTotalAmountSection(price, quantity) {
   const totalAmountSection = `
-    <div class=" bottom-0 left-0 w-full text-white bg-gray-800 p-4 mt-4">
-      <h1 class="text-center mb-2">Total Amount: ₹ ${price * quantity}</h1>
-      <div class="w-full h-0.5 bg-gray-500 mb-2"></div>
-      <button class="bg-green-800 text-white rounded-md w-full py-2">
-        Make Payment Here <i class="ri-corner-right-up-line ml-1"></i>
-      </button>
-    </div>
-  `;
+      <div class=" bottom-0 left-0 w-full text-white bg-gray-800 p-4 mt-4">
+        <h1 class="text-center mb-2">Total Amount : <span class="totalAmount">₹ ${price * quantity} </span></h1>
+        <div class="w-full h-0.5 bg-gray-500 mb-2"></div>
+        <button class="bg-green-800 text-white rounded-md w-full py-2 payNow">
+          Make Payment Here <i class="ri-corner-right-up-line ml-1"></i>
+        </button>
+      </div>
+    `;
 
   document.querySelector('.avilableProductRaper').innerHTML += totalAmountSection;
 }
+appendTotalAmountSection(50, 2);
 
-function mostFrequentSearchByUser(url, tagName) {
-  const elm = `<a href="#" class="optionTag decoration-0 bg-gray-700 px-2 py-1 rounded" id="Option"><p class="text-white font-awesome text-xs font-semibold">${tagName}</p></a>`
-
-  mostFrequentSearch.innerHTML += elm
-
-}
-
-function allInputOtions(optionVlaue) {
-  const section1 = `<option value="${optionVlaue === undefined? '': optionVlaue.trim()}" class="text-white">${optionVlaue === undefined? '': optionVlaue.trim()}</option>`
-  addOption.innerHTML += section1
-}
-
-function swiperJs(){
+function swiperJs() {
   var swiper = new Swiper(".mySwiper", {
     spaceBetween: 30,
     hashNavigation: {
@@ -270,35 +309,16 @@ function swiperJs(){
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
-    autoplay:{
-      delay:3000
+    autoplay: {
+      delay: 3000
     }
   });
 }
 swiperJs()
 
-function currentOffers(url){
+function currentOffers(url) {
   const offer = `<div class="swiper-slide text-center flex justify-center items-center"><img src="${url}" alt="" class="object-cover"></div>`
   document.querySelector('.swiper-wrapper').innerHTML += offer
 }
 const url = 'https://www.shutterstock.com/image-vector/discount-banner-shape-special-offer-260nw-1467549638.jpg'
 // currentOffers(url)
-
-for (let i = 0; i < products.length; i++) {
-  let product = products[i];
-  designeCart(product.url, product.mrp, product.purchaseCount, product.isAvailable, product.productName)
-  allInputOtions(product.productName)
-}
-
-for (let i = 0; i < products.length / 2 - 1; i++) {
-  let product = products[i];
-  showingAllSelectedProduct(product.url, product.mrp, product.productName, product.quantity)
-}
-
-appendTotalAmountSection(50, 2);
-
-products.forEach(product => {
-  mostFrequentSearchByUser('', product.productName.toUpperCase().trim())
-});
-
-

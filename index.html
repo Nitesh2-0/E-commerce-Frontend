@@ -77,7 +77,7 @@
 
                         <!-- Profile dropdown -->
                         <div id="profile-dropdown"
-                            class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded shadow-lg overflow-hidden">
+                            class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded shadow-lg overflow-hidden z-10">
                             <div class="py-1">
                                 <div
                                     class="w-full h-auto p-2 relative bg-gray-600 flex flex-col justify-center items-center rounded">
@@ -102,37 +102,32 @@
 
                 <!-- Mobile Menu bar -->
                 <div class="md:hidden flex gap-10 relative">
-                    <i class="ri-menu-unfold-4-fill text-white text-5xl"></i>
+                    <i class="ri-menu-3-line text-white text-5xl" id="menue"></i>
                 </div>
 
             </div>
         </div>
     </nav>
 
-
-
     <div class="w-full h-auto mt-[5%]">
         <div
             class="mostFrequent w-full mt-20 md:mt-24 bg-gray-800 flex flex-grow-0 gap-10 items-center p-3 px-7 shadow-slate-700">
         </div>
         <!-- Swiper -->
-        <div class="swiper mySwiper w-full  bg-gray-700">
+        <div class="swiper mySwiper w-full bg-gray-700">
             <div class="swiper-wrapper bg-gray-700">
-                <div class="swiper-slide text-center flex justify-center items-center"><img src="./assets/Nitesh Kumar Yadav (1).png" alt=""></div>
-                <div class="swiper-slide text-center flex justify-center items-center"><img src="./assets/Nitesh Kumar Yadav (2).png" alt=""></div>
-                <div class="swiper-slide text-center flex justify-center items-center"><img src="./assets/Nitesh Kumar Yadav (3).png" alt=""></div>
-                <div class="swiper-slide text-center flex justify-center items-center"><img src="./assets/Nitesh Kumar Yadav (1).png" alt=""></div>
+                <div class="swiper-slide flex justify-center items-center">
+                    <img src="./assets/Nitesh Kumar Yadav (2).png" alt="">
+                </div>
+                <div class="swiper-slide flex justify-center items-center ">
+                    <img src="./assets/Nitesh Kumar Yadav (3).png" alt="">
+                </div>
             </div>
-            <div class="swiper-button-next text-white "></div>
+            <div class="swiper-button-next text-white"></div>
             <div class="swiper-button-prev text-white"></div>
-            <div class="swiper-pagination text-white "></div>
+            <div class="swiper-pagination text-white"></div>
         </div>
-
     </div>
-
-    <!-- <div
-        class="mostFrequent w-full mt-20 md:mt-24 bg-gray-800 flex flex-grow-0 gap-10 items-center p-3 px-7 shadow-slate-700">
-    </div> -->
 
     <div class="main w-full h-auto bg-slate-700 text-white" id="main-section"></div>
 
@@ -142,35 +137,36 @@
 
     <section class="py-20 px-4 ">
         <div class="max-w-3xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-6 text-white">Become a Product Creator</h2>
-          <p class="text-lg text-gray-400 mb-8 ">Join our community of creators and start building your own products
-            today.</p>
-          <a href="#" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-md transition duration-300">Get
-            Started</a>
+            <h2 class="text-3xl font-bold mb-6 text-white">Become a Product Creator</h2>
+            <p class="text-lg text-gray-400 mb-8 ">Join our community of creators and start building your own products
+                today.</p>
+            <a href="#"
+                class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-md transition duration-300">Get
+                Started</a>
         </div>
         <div class="max-w-4xl mx-auto mt-16 grid grid-cols-1 sm:grid-cols-2 gap-12">
-          <div class="bg-white rounded-lg p-8 flex items-center justify-center shadow-md">
-            <div class="text-blue-500 bg-blue-100 rounded-full p-4">
-              <i class="ri-store-line ri-3x"></i>
+            <div class="bg-white rounded-lg p-8 flex items-center justify-center shadow-md">
+                <div class="text-blue-500 bg-blue-100 rounded-full p-4">
+                    <i class="ri-store-line ri-3x"></i>
+                </div>
+                <div class="ml-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Create Your Own Store</h3>
+                    <p class="text-gray-600">Start selling your products by creating your own online store.</p>
+                </div>
             </div>
-            <div class="ml-6">
-              <h3 class="text-xl font-semibold text-gray-800 mb-2">Create Your Own Store</h3>
-              <p class="text-gray-600">Start selling your products by creating your own online store.</p>
+            <div class="bg-white rounded-lg p-8 flex items-center justify-center shadow-md">
+                <div class="text-blue-500 bg-blue-100 rounded-full p-4">
+                    <i class="ri-money-dollar-circle-line ri-3x"></i>
+                </div>
+                <div class="ml-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Earn Money</h3>
+                    <p class="text-gray-600">Earn money by selling your products and growing your customer base.</p>
+                </div>
             </div>
-          </div>
-          <div class="bg-white rounded-lg p-8 flex items-center justify-center shadow-md">
-            <div class="text-blue-500 bg-blue-100 rounded-full p-4">
-              <i class="ri-money-dollar-circle-line ri-3x"></i>
-            </div>
-            <div class="ml-6">
-              <h3 class="text-xl font-semibold text-gray-800 mb-2">Earn Money</h3>
-              <p class="text-gray-600">Earn money by selling your products and growing your customer base.</p>
-            </div>
-          </div>
         </div>
     </section>
 
-      <footer class="bg-gray-900 text-white py-8 sm:py-12">
+    <footer class="bg-gray-900 text-white py-8 sm:py-12">
         <div class="container mx-auto flex flex-wrap justify-between px-20">
             <div class="w-full sm:w-1/2 md:w-1/4 mb-6 sm:mb-0">
                 <h2 class="text-lg font-semibold mb-4">Navigation</h2>
@@ -201,7 +197,7 @@
         <div class="border-t border-gray-800 mt-8 pt-8 text-center">
             <p class="text-sm">&copy; POMPOM Fruits Store <span class="hidden sm:inline-block">|</span> 2024-2026</p>
         </div>
-      </footer>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./script.js"></script>

@@ -47,14 +47,12 @@ select{
 }
 
 .cartFrame {
-  /* width: 90%; */
-  width: 300px;
+  width: 280px;
   height: fit-content;
   background-color: #383535;
   border-radius: 5px;
   overflow: hidden;
   padding: 10px;
-  /* margin-top: 5px; */
 }
 
 @media (max-width: 400px) {
