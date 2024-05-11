@@ -36,15 +36,6 @@ select{
   outline: none;
 }
 
-#main-section{
-  padding : 10px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 15px;
-  
-}
 
 .cartFrame {
   width: 280px;
@@ -53,6 +44,10 @@ select{
   border-radius: 5px;
   overflow: hidden;
   padding: 10px;
+  transition: all cubic-bezier(0.215, 0.610, 0.355, 1) 1s;
+}
+.cartFrame:hover {
+  transform: scale(1.05);
 }
 
 @media (max-width: 400px) {
